@@ -1,0 +1,53 @@
+FROM php:8.1.16-apache
+
+# composerを取得してインストールする
+RUN cd /usr/bin && \
+  curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Node.jsを取得する
+RUN cd /usr/bin && \
+  curl -sL https://deb.nodesource.com/setup_19.x | bash -
+
+# 各種ライブラリをインストールする
+RUN apt update &&\
+  apt install -y \
+  g++ \
+  libicu-dev \
+  libpq-dev \
+  libzip-dev \
+  libonig-dev \
+  zip \
+  zlib1g-dev \ 
+  nodejs && \
+  docker-php-ext-install \
+  intl \
+  opcache \
+  pdo \
+  pdo_mysql \
+  mysqli
+
+# composerの設定を行う
+RUN mv /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled && \
+  /bin/sh -c a2enmod rewrite
+
+# inventoryプロジェクトをコピーする
+COPY ./inventory/ /var/www/html/inventory/
+RUN chmod -R 777 /var/www/html/inventory
+
+# ワークディレクトリを設定する
+WORKDIR /var/www/html/inventory
+
+# composerとnpmを使用してライブラリをインストールし、ビルドを行う
+RUN composer install && \
+  npm install && \
+  npm run build
+
+# 永続化するディレクトリ群は削除する
+RUN cd /var/www/html/inventory && \
+  rm -r ./app \
+  ./bootstrap \
+  ./config \
+  ./database \
+  ./lang \
+  ./resources \
+  ./routes

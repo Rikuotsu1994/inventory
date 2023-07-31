@@ -1,0 +1,43 @@
+version: '3.8'
+services:
+  #php用コンテナ
+  php-apache:
+    build:
+      context: ./../
+      dockerfile: ./docker/php-apache/DockerFile
+    container_name: php-apache
+    volumes:
+      - ./../inventory/app:/var/www/html/inventory/app
+      - ./../inventory/bootstrap:/var/www/html/inventory/bootstrap
+      - ./../inventory/config:/var/www/html/inventory/config
+      - ./../inventory/database:/var/www/html/inventory/database
+      - ./../inventory/lang:/var/www/html/inventory/lang
+      - ./../inventory/resources:/var/www/html/inventory/resources
+      - ./../inventory/routes:/var/www/html/inventory/routes
+      - ./php-apache/logs/laravel:/var/www/html/inventory/storage/logs
+      - ./php-apache/logs/apache:/var/log/apache2
+      - ./php-apache/conf/000-default.conf:/etc/apache2/sites-enabled/000-default.conf
+    ports:
+      - 8000:80
+    tty: true
+    depends_on:
+      - mysql
+    environment:
+      COMPOSER_ALLOW_SUPERUSER: 1
+
+  #MySQL用コンテナ
+  mysql:
+    image: mysql:8.0.32
+    container_name: mysql
+    volumes:
+      - ./mysql:/var/lib/mysql
+    ports:
+      - 8010:3306
+    tty: true
+    user: 1000:1000
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: inventory
+      TZ: "Asia/Tokyo"
+    # Mac端末の場合のみ有効にする
+    # platform: linux/arm64
