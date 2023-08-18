@@ -1,6 +1,5 @@
 <x-app>
   <x-slot name="css_link">{{ asset('/css/login.css') }}</x-slot>
-
   <div class="login_form">
     <h1>在庫管理システム</h1>
     <div>

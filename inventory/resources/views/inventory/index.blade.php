@@ -1,4 +1,5 @@
-  <div class="login_form">
-    <h1>在庫管理システム</h1>
-    </div>
-  </div>
+<x-app>
+  <x-header></x-header>
+  <x-slot name="css_link"></x-slot>
+  <h1>在庫管理システム</h1>
+</x-app>
