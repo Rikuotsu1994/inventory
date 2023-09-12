@@ -30,6 +30,12 @@ class InventoryService
         return back();
     }
 
+    /**
+    * ログインユーザの利用者IDをInventoryRepositoryに渡して調味料データを取得します
+    *
+    * @param Request $request
+    * @return Collection
+    */
     public function getSeasoningsInventoryList (Request $request): Collection
     {
         $id = Auth::id();

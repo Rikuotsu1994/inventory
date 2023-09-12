@@ -8,6 +8,12 @@ use Illuminate\View\View;
 
 class InventoryController extends Controller
 {
+    /**
+    * 調味料データを取得します
+    *
+    * @param Request $request
+    * @return View
+    */
     public function getSeasoningsInventory(Request $request) : View
     {
         $inventory_service = new InventoryService();

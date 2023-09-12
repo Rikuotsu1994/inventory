@@ -4,14 +4,17 @@ namespace App\Repositories;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Collection;
-use Illuminate\Http\Request;
 
 class InventoryRepository
 {
+    /**
+    * ログインユーザのIDと利用者IDが一致する調味料データを取得します
+    *
+    * @param int $id
+    * @return Collection
+    */
     public function searchSeasoningsInventory(int $id): Collection
     {
-
-
         $nestedSubQuery = function ($subQuery) use ($id){
             $cond = ['seasonings.users_id' => $id, 'markets.users_id' => $id];
 
