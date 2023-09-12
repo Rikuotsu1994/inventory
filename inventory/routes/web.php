@@ -15,8 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () { return view('login');});
+Route::get('/', function () { return view('login');})->name('login');
 
 Route::post('/login', [LoginController::class, 'postLoginInventory']);
 
-Route::get('/inventory', function () { return view('inventory/index');});
+/*Route::get('/inventory', function () { return view('inventory/index');});*/
+Route::get('/inventory', [InventoryController::class, 'getSeasoningsInventory'])
+->middleware(['auth', 'verified'])->name('index');

@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Repositories\InventoryRepository;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
@@ -27,5 +28,13 @@ class InventoryService
             'login_failed' =>trans('IDまたはパスワードの組み合わせに誤りがあります'),
         ]);
         return back();
+    }
+
+    public function getSeasoningsInventoryList (Request $request): Collection
+    {
+        $id = Auth::id();
+        $inventory_repository = new InventoryRepository();
+        $query = $inventory_repository->searchSeasoningsInventory($id);
+        return $query;
     }
 }

@@ -1,6 +1,3 @@
-html {
-    background-color: #EBF4EF;
-}
 label {
     display: block;
     text-align: left;
@@ -16,6 +13,7 @@ label {
   width: 500px;
   height: 330px;
   margin: 0 auto;
+  margin-top: 50px;
   padding: 20px;
   border: 1px solid #000000;
   border-radius: 10px;

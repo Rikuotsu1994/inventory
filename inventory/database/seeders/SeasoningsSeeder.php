@@ -19,10 +19,14 @@ class SeasoningsSeeder extends Seeder
             [
                 'users_id' => '1',
                 'name' => '塩',
+                'inventory' => '1',
+                'remarks' => 'サンプルテキスト',
             ],
             [
                 'users_id' => '1',
                 'name' => '砂糖',
+                'inventory' => '1',
+                'remarks' => 'サンプルテキスト',
             ],
         ]);
     }

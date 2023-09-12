@@ -18,7 +18,8 @@ class AmountsSeeder extends Seeder
         DB::table('amounts')->insert([
         'seasonings_id' => '1',
         'markets_id' => '1',
-        'amount' => '1',
+        'amount' => '100',
+        
         ]);
     }
 }
