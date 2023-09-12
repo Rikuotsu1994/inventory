@@ -20,4 +20,16 @@ class LoginController extends Controller
         $login_view = $login_service->loginAttempt($request);
         return $login_view;
     }
+
+    /**
+    * システムからログアウトします
+    *
+    * @return RedirectResponse
+    */
+    public function getLogoutInventory(): RedirectResponse
+    {
+        $logout_service = new InventoryService();
+        $logout_view = $logout_service->logoutAttemp();
+        return $logout_view;
+        }
 }

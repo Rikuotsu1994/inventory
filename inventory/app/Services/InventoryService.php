@@ -29,7 +29,16 @@ class InventoryService
         ]);
         return back();
     }
-
+        /**
+    * システムからログアウトします
+    *
+    * @return RedirectResponse
+    */
+    public function logoutAttemp (): RedirectResponse
+    {
+        Auth::logout();
+        return redirect()->route('login');
+    }
     /**
     * ログインユーザの利用者IDをInventoryRepositoryに渡して調味料データを取得します
     *

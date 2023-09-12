@@ -27,7 +27,7 @@
         </a>
         <ul class="dropdown_lists">
           <li class="dropdown_list"><a href="" class="user_menu">利用者管理</a></li>
-          <li class="dropdown_list"><a href="" class="user_menu">ログアウト</a></li>
+          <li class="dropdown_list"><a href="{{ route('logout') }}" class="user_menu">ログアウト</a></li>
         </ul>
       </li>
     </ul>

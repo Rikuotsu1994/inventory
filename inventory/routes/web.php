@@ -19,6 +19,7 @@ Route::get('/', function () { return view('login');})->name('login');
 
 Route::post('/login', [LoginController::class, 'postLoginInventory']);
 
-/*Route::get('/inventory', function () { return view('inventory/index');});*/
+Route::get('/logout', [LoginController::class, 'getLogoutInventory'])->name('logout');
+
 Route::get('/inventory', [InventoryController::class, 'getSeasoningsInventory'])
 ->middleware(['auth', 'verified'])->name('index');
