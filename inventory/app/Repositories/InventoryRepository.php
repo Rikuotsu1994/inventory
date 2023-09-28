@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Collection;
+use Exception;
 
 class InventoryRepository
 {
@@ -48,6 +49,34 @@ class InventoryRepository
             ->orderBy('market_id','asc')
             ->get();
 
+        if($query->isEmpty()) {
+            $query = DB::table('seasonings') 
+            ->select( 'seasonings.id as seasoning_id', 'seasonings.name as seasoning_name', 'seasonings.inventory as number_of_seasoning',
+            'seasonings.image as seasoning_image',
+            'seasonings.remarks as seasonings_remark', DB::raw('null as market_id'), DB::raw('null as market_name'), DB::raw('null as seasoning_amount'))
+            ->where('seasonings.users_id',$id)
+            ->orderBy('seasoning_id','asc')
+            ->get();
+        }
+
         return $query;
-  }
+    }
+    /**
+    * 調味料データを登録します
+    *
+    * @param array $param
+    * @return Collection
+    */
+    public function createSeasoning(array $param): void
+    {
+        try {
+            DB::beginTransaction();
+            DB::table('seasonings')->insert($param);
+            DB::commit();
+        }
+        catch (Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
+    }
 }

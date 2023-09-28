@@ -153,9 +153,9 @@
   margin-right: 30px;
 }
 .seasoning_update_btn:hover svg {
-background-color: #A6A6A6;
-border-radius: 30px;
-fill: #FFFFFF;
+  background-color: #A6A6A6;
+  border-radius: 30px;
+  fill: #FFFFFF;
 }
 .seasonings_not_exist {
   border: solid 3px;

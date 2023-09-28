@@ -1,26 +1,28 @@
 <x-app>
   <x-header></x-header>
   <x-slot name="css_link">{{ asset('/css/index.css') }}</x-slot>
+  <x-slot name="create_dialog_css">{{ asset('/css/create_seasoning_dialog.css') }}</x-slot>
+  <x-slot name="create_dialog_js">{{ asset('/js/create_dialog.js') }}</x-slot>
     <div class="inventory_contents">
       @if($query->isEmpty())
         <div class="seasonings_not_exist">データが登録されていません</div>
       @endif
       @php
         $seasoning_id = App\Models\Seasonings::checking_duplicate_id;
-        $amount_flag = 0;
+        $amount_flag = App\Models\Amounts::default_amount_flag;
       @endphp
       @foreach ($query as $seasoning)
         @if($seasoning_id != ($seasoning->seasoning_id))
           @if($amount_flag != 0)
-            </details> 
+            </details>
             @php
-              $amount_flag = 0;
+              $amount_flag = App\Models\Amounts::default_amount_flag;
             @endphp
           @endif
           <div class="seasoning_chart">
             <div class="seasoning_picture_line">
               @if(isset($seasoning->seasoning_image))
-                <div class="seasoning_picture">{{ $seasoning->seasoning_image }}</div>
+                <div class="seasoning_picture"><img src="{{ asset($seasoning->seasoning_image) }}"></div>
               @else
                 <div class="seasoning_picture_space"></div>
               @endif
@@ -76,28 +78,35 @@
           <details class="amount_chart">
             <summary>金額比較表</summary>
         @endif
+        @if(isset($seasoning->market_name))
           <div class="market_line">
             <div class="market_name">{{ $seasoning->market_name }}</div>
-            @if(isset($seasoning->seasoning_amount))
-              <div class="market_amount @if($market_min_amount == ($seasoning->seasoning_amount)) market_min_amount @endif">&yen;{{ $seasoning->seasoning_amount }}</div>
-            @else 
-              <div class="market_amount">取扱い無し</div>
-            @endif
-            <div class="amount_update_btn">
-              <a href="">
-                <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32">
-                  <path d="M200-200h56l345-345-56-56-345 345v56Zm572-403L602-771l56-56q23-23 56.5-23t56.5 23l56 56q23 23 24 55.5T829-660l-57 57Zm-58 59L290-120H120v-170l424-424 170 170Zm-141-29-28-28 56 56-28-28Z"/>
-                </svg>
-              </a>
+              @if(isset($seasoning->seasoning_amount))
+                <div class="market_amount @if($market_min_amount == ($seasoning->seasoning_amount)) market_min_amount @endif">&yen;{{ $seasoning->seasoning_amount }}</div>
+              @else 
+                <div class="market_amount">取扱い無し</div>
+              @endif
+              <div class="amount_update_btn">
+                <a href="">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32">
+                    <path d="M200-200h56l345-345-56-56-345 345v56Zm572-403L602-771l56-56q23-23 56.5-23t56.5 23l56 56q23 23 24 55.5T829-660l-57 57Zm-58 59L290-120H120v-170l424-424 170 170Zm-141-29-28-28 56 56-28-28Z"/>
+                  </svg>
+                </a>
+              </div>
             </div>
+            @php
+              $seasoning_id = ($seasoning->seasoning_id);
+              $amount_flag = App\Models\Amounts::checking_amount_flag;
+            @endphp
+        @else
+          <div class="market_line">
+            <div>お店が1件も登録されていません</div>
           </div>
-              @php
-                $seasoning_id = ($seasoning->seasoning_id);
-                $amount_flag = 1;
-              @endphp
+          </details>
+        @endif
       @endforeach
     </div>
-    <x-create-button>
-      <x-slot name="create_link">#</x-slot>
-    </x-create-button>
+  <x-create-button></x-create-button>
+  <x-create></x-create>
+  <x-snackbar></x-snackbar>
 </x-app>

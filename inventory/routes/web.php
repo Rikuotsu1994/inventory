@@ -23,3 +23,6 @@ Route::get('/logout', [LoginController::class, 'getLogoutInventory'])->name('log
 
 Route::get('/inventory', [InventoryController::class, 'getSeasoningsInventory'])
 ->middleware(['auth', 'verified'])->name('index');
+
+Route::post('/create', [InventoryController::class, 'postSeasoningsCreate'])
+->middleware(['auth', 'verified'])->name('create');

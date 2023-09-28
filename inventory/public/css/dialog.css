@@ -1,0 +1,37 @@
+.dialog {
+    background-color: #FFFFFF;
+    border: 1px solid #aaa;
+    box-shadow: 2px 2px 4px #888;
+    display: flex;
+    justify-content: center;
+    padding: 10px 20px;
+    position: fixed;
+    left: 50%;
+    max-width: 600px;
+    text-align: center;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    z-index: 1100;
+}
+.dialog_background {
+    background-color: rgba(0,0,0,0.7);;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+.dialog_title {
+    font-size: 48px;
+}
+.error_message {
+    color: #FF0000;
+    font-size: 16px;
+    text-align: start;
+}
+input {
+    border: none;
+    outline: none;
+}
