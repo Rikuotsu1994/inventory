@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('editors', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('users_id')->constrained('users');
+            $table->foreignId('users_id')->constrained('users')->onDelete('cascade');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable();
         });

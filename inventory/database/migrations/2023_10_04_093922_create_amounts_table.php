@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('markets', function (Blueprint $table) {
+        Schema::create('amounts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('users_id')->constrained('users');
-            $table->string('name',50);
-            $table->string('remarks',100)->nullable();
+            $table->foreignId('seasonings_id')->constrained('seasonings')->onDelete('cascade');
+            $table->foreignId('markets_id')->constrained('markets')->onDelete('cascade');
+            $table->integer('amount');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable();
         });
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('markets');
+        Schema::dropIfExists('amounts');
     }
 };

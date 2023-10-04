@@ -13,12 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('seasonings', function (Blueprint $table) {
+        Schema::create('markets', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('users_id')->constrained('users');
+            $table->foreignId('users_id')->constrained('users')->onDelete('cascade');
             $table->string('name',50);
-            $table->tinyInteger('inventory')->nullable();
-            $table->string('image',255)->nullable();
             $table->string('remarks',100)->nullable();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable();
@@ -32,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('seasonings');
+        Schema::dropIfExists('markets');
     }
 };
