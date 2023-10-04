@@ -72,7 +72,7 @@ class InventoryService
                     $dir = 'users_image'. Auth::id();
                     $file_name = $file->hashName();
                     $request->file('seasoning_image')->storeAs('public/' . $dir, $file_name);
-                    $image_path = 'storage/' . $dir . '/' . $file_name;
+                    $image_path = $dir . '/' . $file_name;
                 }
                 else {
                     throw new Exception();

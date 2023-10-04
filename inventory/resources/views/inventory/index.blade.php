@@ -22,7 +22,7 @@
           <div class="seasoning_chart">
             <div class="seasoning_picture_line">
               @if(isset($seasoning->seasoning_image))
-                <div class="seasoning_picture"><img src="{{ asset($seasoning->seasoning_image) }}"></div>
+                <div class="seasoning_picture"><img src="{{ asset('storage/' . $seasoning->seasoning_image) }}"></div>
               @else
                 <div class="seasoning_picture_space"></div>
               @endif
