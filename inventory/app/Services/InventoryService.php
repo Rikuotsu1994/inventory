@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
 
 class InventoryService
@@ -97,6 +98,52 @@ class InventoryService
         catch (Exception $e) {
             $message = '調味料の登録に失敗しました。';
             return $message;
+        }
+    }
+    /**
+    * 調味料データの削除を行います
+    *
+    * @param Request $request
+    * @return String
+    */
+    public function deleteSeasoningInventory (Request $request): String
+    {
+        try {
+            $param = [
+                'id' => $request->seasoning_id,
+                'users_id' => Auth::id(),
+            ];
+            $inventory_repository = new InventoryRepository();
+            $seasoning = $inventory_repository->searchOneSeasoning($param);
+            if(empty($seasoning)) {
+                $message = '対象のデータが存在しません。';
+                return $message;
+            }
+            if (isset($seasoning->image)) {
+                $this->deleteSeasoningImage($seasoning->image);
+            }
+            $inventory_repository->deleteSeasoning($seasoning);
+            $message = '調味料を削除しました。';
+            return $message;
+        }
+        catch (Exception $e) {
+            $message = '調味料の削除に失敗しました。';
+            return $message;
+        }
+    }
+    /**
+    * 調味料データの画像を削除します
+    *
+    * @param string $path
+    * @return void
+    */
+    protected function deleteSeasoningImage(string $path): void
+    {
+        try {
+            Storage::disk('public')->delete($path);
+        }
+        catch (Exception $e) {
+            throw $e;
         }
     }
 }

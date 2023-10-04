@@ -11,6 +11,8 @@ class Seasonings extends Model
 
     const checking_duplicate_id = 0;
 
+    protected $table = 'seasonings';
+
     public function user(){
         return $this->belongsTo(User::class, 'users_id');
       }

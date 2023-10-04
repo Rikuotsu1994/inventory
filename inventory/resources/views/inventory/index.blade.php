@@ -3,6 +3,8 @@
   <x-slot name="css_link">{{ asset('/css/index.css') }}</x-slot>
   <x-slot name="create_dialog_css">{{ asset('/css/create_seasoning_dialog.css') }}</x-slot>
   <x-slot name="create_dialog_js">{{ asset('/js/create_dialog.js') }}</x-slot>
+  <x-slot name="delete_dialog_css">{{ asset('/css/delete_seasoning_dialog.css') }}</x-slot>
+  <x-slot name="delete_dialog_js">{{ asset('/js/delete_dialog.js') }}</x-slot>
     <div class="inventory_contents">
       @if($query->isEmpty())
         <div class="seasonings_not_exist">データが登録されていません</div>
@@ -28,21 +30,17 @@
               @endif
               <div class="seasoning_line">
                 <div class="seasoning_first_line">
-                  <div class="seasoning_name">{{ $seasoning->seasoning_name }}</div>
+                  <div class="seasoning_name" id="seasoning_name_{{ $seasoning->seasoning_id }}">{{ $seasoning->seasoning_name }}</div>
                   <div class="seasoning_editor_btn">
                     <div class="seasoning_update_btn">
-                      <a href="">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32">
-                          <path d="M200-200h56l345-345-56-56-345 345v56Zm572-403L602-771l56-56q23-23 56.5-23t56.5 23l56 56q23 23 24 55.5T829-660l-57 57Zm-58 59L290-120H120v-170l424-424 170 170Zm-141-29-28-28 56 56-28-28Z"/>
-                        </svg>
-                      </a>
+                      <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32">
+                        <path d="M200-200h56l345-345-56-56-345 345v56Zm572-403L602-771l56-56q23-23 56.5-23t56.5 23l56 56q23 23 24 55.5T829-660l-57 57Zm-58 59L290-120H120v-170l424-424 170 170Zm-141-29-28-28 56 56-28-28Z"/>
+                      </svg>
                     </div>
-                    <div class="seasoning_delete_btn">
-                      <a href="">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32">
-                          <path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/>
-                        </svg>
-                      </a>
+                    <div class="seasoning_delete_btn" data-seasoningid="{{ $seasoning->seasoning_id }}">
+                      <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32">
+                        <path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/>
+                      </svg>
                     </div>
                   </div>
                 </div>
@@ -87,11 +85,9 @@
                 <div class="market_amount">取扱い無し</div>
               @endif
               <div class="amount_update_btn">
-                <a href="">
-                  <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32">
-                    <path d="M200-200h56l345-345-56-56-345 345v56Zm572-403L602-771l56-56q23-23 56.5-23t56.5 23l56 56q23 23 24 55.5T829-660l-57 57Zm-58 59L290-120H120v-170l424-424 170 170Zm-141-29-28-28 56 56-28-28Z"/>
-                  </svg>
-                </a>
+                <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32">
+                  <path d="M200-200h56l345-345-56-56-345 345v56Zm572-403L602-771l56-56q23-23 56.5-23t56.5 23l56 56q23 23 24 55.5T829-660l-57 57Zm-58 59L290-120H120v-170l424-424 170 170Zm-141-29-28-28 56 56-28-28Z"/>
+                </svg>
               </div>
             </div>
             @php
@@ -108,5 +104,6 @@
     </div>
   <x-create-button></x-create-button>
   <x-create></x-create>
+  <x-delete></x-delete>
   <x-snackbar></x-snackbar>
 </x-app>

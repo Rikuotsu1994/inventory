@@ -2,9 +2,9 @@
 
 namespace App\Repositories;
 
+use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Collection;
-use Exception;
 
 class InventoryRepository
 {
@@ -58,20 +58,50 @@ class InventoryRepository
             ->orderBy('seasoning_id','asc')
             ->get();
         }
-
         return $query;
     }
     /**
     * 調味料データを登録します
     *
     * @param array $param
-    * @return Collection
+    * @return void
     */
-    public function createSeasoning(array $param): void
+    public function createSeasoning(array $array): void
     {
         try {
             DB::beginTransaction();
-            DB::table('seasonings')->insert($param);
+            DB::table('seasonings')->insert($array);
+            DB::commit();
+        }
+        catch (Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
+    }
+    /**
+    * 調味料データを1件のみ取得します
+    *
+    * @param array $param
+    * @return object
+    */
+    public function searchOneSeasoning(array $array): mixed
+    {
+        $query = DB::table('seasonings')->where('id',$array["id"])
+        ->where('users_id',$array["users_id"])
+        ->first();
+        return $query;
+    }
+    /**
+    * 調味料データを削除します
+    *
+    * @param array $param
+    * @return void
+    */
+    public function deleteSeasoning(object $seasoning): void
+    {
+        try {
+            DB::beginTransaction();
+            DB::table('seasonings')->where('id',$seasoning->id)->where('users_id',$seasoning->users_id)->delete();
             DB::commit();
         }
         catch (Exception $e) {

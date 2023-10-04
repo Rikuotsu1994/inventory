@@ -10,7 +10,9 @@
   @if (isset($dialog_css)) <link rel="stylesheet" href="{{ $dialog_css }}"> @endif
   @if (isset($create_btn_css)) <link rel="stylesheet" href="{{ $create_btn_css }}"> @endif
   @if (isset($create_dialog_css)) <link rel="stylesheet" href="{{ $create_dialog_css }}"> @endif
-  @if (isset($create_dialog_js)) <script src="{{ $create_dialog_js }}" defer></script>@endif
+  @if (isset($create_dialog_js)) <script src="{{ $create_dialog_js }}" defer></script> @endif
+  @if (isset($delete_dialog_css)) <link rel="stylesheet" href="{{ $delete_dialog_css }}"> @endif
+  @if (isset($delete_dialog_js)) <script src="{{ $delete_dialog_js }}" defer></script> @endif
 </head>
 <body>
   <div>

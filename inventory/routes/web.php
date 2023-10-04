@@ -26,3 +26,6 @@ Route::get('/inventory', [InventoryController::class, 'getSeasoningsInventory'])
 
 Route::post('/create', [InventoryController::class, 'postSeasoningsCreate'])
 ->middleware(['auth', 'verified'])->name('create');
+
+Route::post('/delete', [InventoryController::class, 'postSeasoningsDelete'])
+->middleware(['auth', 'verified'])->name('delete');

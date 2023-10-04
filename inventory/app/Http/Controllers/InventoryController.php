@@ -22,7 +22,6 @@ class InventoryController extends Controller
         $query = $inventory_service->getSeasoningsInventoryList($request);
         return view('/inventory/index', compact('query'));
     }
-
     /**
     * 調味料データを登録します
     *
@@ -33,6 +32,18 @@ class InventoryController extends Controller
     {
         $inventory_service = new InventoryService();
         $message = $inventory_service->createSeasoningInventory($request);
+        return redirect('/inventory')->with(compact('message'));
+    }
+    /**
+    * 調味料データを削除します
+    *
+    * @param Request $request
+    * @return RedirectResponse
+    */
+    public function postSeasoningsDelete(Request $request) :RedirectResponse
+    {
+        $inventory_service = new InventoryService();
+        $message = $inventory_service->deleteSeasoningInventory($request);
         return redirect('/inventory')->with(compact('message'));
     }
 }
