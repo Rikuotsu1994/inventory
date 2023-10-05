@@ -1,4 +1,3 @@
-
 <x-dialog>
   @if (($errors->has('dialog_name')) == "create_dialog" )
     <x-slot name="dialog_name">create_dialog create_dialog_error</x-slot>

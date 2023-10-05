@@ -1,5 +1,6 @@
 <header>
   <x-slot name="header_css">{{ asset('/css/header.css') }}</x-slot>
+  <x-slot name="header_js">{{ asset('/js/header.js') }}</x-slot>
   <div class="nav_link">
     <ul class="nav_wrapper">
       <li class="nav_item">
@@ -18,20 +19,20 @@
           <div class="link_name @if(Request::is('markets')) under_lin @endif">markets</div>
         </a>
       </li>
-    <ul class="user_link">
-      <li class="nav_list">
-        <a href="">
-          <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 0 24 24" width="48px" fill="#FFFFFF">
-          <path d="M0 0h24v24H0z" fill="none"/><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-          <div class="link_name @if(Request::is('user')) under_lin @endif">user</div>
-        </a>
-        <div class="user_list">
-        <ul class="dropdown_lists">
-          <li class="dropdown_list"><a href="" class="user_menu">利用者管理</a></li>
-          <li class="dropdown_list"><a href="{{ route('logout') }}" class="user_menu">ログアウト</a></li>
-        </ul>
-        </div>
-      </li>
     </ul>
+    <details class="user_link">
+      <summary>
+        <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 0 24 24" width="48px" fill="#FFFFFF">
+          <path d="M0 0h24v24H0z" fill="none"/><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+        </svg>
+        <div class="link_name @if(Request::is('user')) under_lin @endif">user</div>
+      </summary>
+      <div class="user_list">
+        <div class="dropdown_lists">
+          <div class="dropdown_list"><a href="" class="user_menu">利用者管理</a></div>
+          <div class="dropdown_list"><a href="{{ route('logout') }}" class="user_menu">ログアウト</a></div>
+        </div>
+      </div>
+    </details>
   </div>
 </header>

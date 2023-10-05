@@ -44,6 +44,7 @@
   align-items: center;
   display: flex;
   flex-direction: column;
+  margin-top: 90px;
 }
 .market_amount {
   margin-left: auto;

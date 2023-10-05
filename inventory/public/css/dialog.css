@@ -1,3 +1,7 @@
+.caution_title_text {
+    color: red;
+    padding-left: 10px;
+}
 .dialog {
     background-color: #FFFFFF;
     border: 1px solid #aaa;
@@ -24,7 +28,10 @@
     z-index: 1000;
 }
 .dialog_title {
+    align-items: center;
+    display: flex;
     font-size: 48px;
+    justify-content: center;
 }
 .error_message {
     color: #FF0000;

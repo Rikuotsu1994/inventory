@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
   <link rel="stylesheet" href="{{ $css_link }}">
   @if (isset($header_css)) <link rel="stylesheet" href="{{ $header_css }}"> @endif
+  @if (isset($header_js)) <script src="{{ $header_js }}" defer></script> @endif
   @if (isset($snackbar_css)) <link rel="stylesheet" href="{{ $snackbar_css }}"> @endif
   @if (isset($dialog_css)) <link rel="stylesheet" href="{{ $dialog_css }}"> @endif
   @if (isset($create_btn_css)) <link rel="stylesheet" href="{{ $create_btn_css }}"> @endif
