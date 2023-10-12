@@ -3,6 +3,8 @@
   <x-slot name="css_link">{{ asset('/css/index.css') }}</x-slot>
   <x-slot name="create_dialog_css">{{ asset('/css/create_seasoning_dialog.css') }}</x-slot>
   <x-slot name="create_dialog_js">{{ asset('/js/create_dialog.js') }}</x-slot>
+  <x-slot name="update_seasoning_dialog_css">{{ asset('/css/update_seasoning_dialog.css') }}</x-slot>
+  <x-slot name="update_seasoning_dialog_js">{{ asset('/js/update_seasoning_dialog.js') }}</x-slot>
   <x-slot name="delete_dialog_css">{{ asset('/css/delete_seasoning_dialog.css') }}</x-slot>
   <x-slot name="delete_dialog_js">{{ asset('/js/delete_dialog.js') }}</x-slot>
     <div class="inventory_contents">
@@ -24,7 +26,7 @@
           <div class="seasoning_chart">
             <div class="seasoning_picture_line">
               @if(isset($seasoning->seasoning_image))
-                <div class="seasoning_picture"><img src="{{ asset('storage/' . $seasoning->seasoning_image) }}"></div>
+                <div class="seasoning_picture"><img src="{{ asset('storage/' . $seasoning->seasoning_image) }}" id="seasoning_picture_{{ $seasoning->seasoning_id }}"></div>
               @else
                 <div class="seasoning_picture_space"></div>
               @endif
@@ -32,7 +34,7 @@
                 <div class="seasoning_first_line">
                   <div class="seasoning_name" id="seasoning_name_{{ $seasoning->seasoning_id }}">{{ $seasoning->seasoning_name }}</div>
                   <div class="seasoning_editor_btn">
-                    <div class="seasoning_update_btn">
+                    <div class="seasoning_update_btn" data-seasoningid="{{ $seasoning->seasoning_id }}">
                       <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32">
                         <path d="M200-200h56l345-345-56-56-345 345v56Zm572-403L602-771l56-56q23-23 56.5-23t56.5 23l56 56q23 23 24 55.5T829-660l-57 57Zm-58 59L290-120H120v-170l424-424 170 170Zm-141-29-28-28 56 56-28-28Z"/>
                       </svg>
@@ -59,16 +61,14 @@
                   <div class="seasoning_inventory">
                     <div>在庫数</div>
                     @if(isset($seasoning->number_of_seasoning))
-                      <div class="number_of_seasoning">{{ $seasoning->number_of_seasoning }}</div>
+                      <div class="number_of_seasoning" id="number_of_seasoning_{{ $seasoning->seasoning_id }}">{{ $seasoning->number_of_seasoning }}</div>
                     @else 
-                      <div class="number_of_seasoning">0</div>
+                      <div class="number_of_seasoning" id="number_of_seasoning_{{ $seasoning->seasoning_id }}">0</div>
                     @endif
                   </div>
                 </div>
                 <div class="seasoning_third_line">
-                  <div>メモ:
-                    {{ $seasoning->seasonings_remark }}
-                  </div>
+                  <div class="seasoning_remarks" id="seasoning_remarks_{{ $seasoning->seasoning_id }}">メモ:{{ $seasoning->seasonings_remark }}</div>
                 </div>
               </div>
             </div>
@@ -104,6 +104,7 @@
     </div>
   <x-create-button></x-create-button>
   <x-create></x-create>
+  <x-update-seasoning></x-update-seasoning>
   <x-delete></x-delete>
   <x-snackbar></x-snackbar>
 </x-app>

@@ -116,7 +116,7 @@ class InventoryService
             $inventory_repository = new InventoryRepository();
             $seasoning = $inventory_repository->searchOneSeasoning($param);
             if(empty($seasoning)) {
-                $message = '対象のデータが存在しません。';
+                $message = '対象の調味料が存在しません。';
                 return $message;
             }
             if (isset($seasoning->image)) {
@@ -129,6 +129,79 @@ class InventoryService
         catch (Exception $e) {
             $message = '調味料の削除に失敗しました。';
             return $message;
+        }
+    }
+    /**
+    * 調味料データの更新を行います
+    *
+    * @param Request $request
+    * @return String
+    */
+    public function updateSeasoningInventory (Request $request): String
+    {
+        try {
+            $param = [
+                'id' => $request->seasoning_id,
+                'users_id' => Auth::id(),
+            ];
+            $inventory_repository = new InventoryRepository();
+            $seasoning = $inventory_repository->searchOneSeasoning($param);
+            if(empty($seasoning)) {
+                $message = '対象の調味料が存在しません。';
+                return $message;
+            }
+            if ((is_null($seasoning->image)) && (isset($request->seasoning_image))) {
+                $image_path = $this->createSeasoningImage($request);
+                $param['image'] = $image_path;
+            };
+            if ((isset($seasoning->image)) && (isset($request->seasoning_image))) {
+                $this->deleteSeasoningImage($seasoning->image);
+                $image_path = $this->createSeasoningImage($request);
+                $param['image'] = $image_path;
+            };
+            if (($request->image_delete_flag) && (isset($seasoning->image))) {
+                $this->deleteSeasoningImage($seasoning->image);
+                $param['image'] = null;
+            }
+            $param['name'] = $request->seasoning_name;
+            $param['inventory'] = $request->seasoning_inventory;
+            $param['remarks'] = $request->remarks;
+            $inventory_repository->updateSeasoning($param);
+            $message = '調味料を更新しました。';
+            return $message;
+        }
+        catch (Exception $e) {
+            $message = '調味料の更新に失敗しました。';
+            return $message;
+        }
+    }
+    /**
+    * 調味料データの画像を登録します
+    *
+    * @param object $request
+    * @return mixed
+    */
+    protected function createSeasoningImage(object $request): mixed
+    {
+        try {
+            $extension = $request->seasoning_image->extension();
+            $extension_check = [
+                'jpg','jpeg','png'
+            ];
+            if(in_array($extension, $extension_check, true)) {
+                $file = $request->file('seasoning_image');
+                $dir = 'users_image'. Auth::id();
+                $file_name = $file->hashName();
+                $request->file('seasoning_image')->storeAs('public/' . $dir, $file_name);
+                $image_path = $dir . '/' . $file_name;
+                return $image_path;
+            }
+            else {
+                throw new Exception();
+            }
+        }
+        catch (Exception $e) {
+            throw $e;
         }
     }
     /**

@@ -26,6 +26,7 @@ class SeasoningRequest extends FormRequest
         "required" => "必須項目です。",
         "seasoning_name.max" => "50文字以内で入力してください。",
         "seasoning_inventory.max" => "登録できる在庫数は99個までです。",
+        "seasoning_inventory.numeric" => "半角数字で入力してください。",
         "remarks.max" => "100文字以内で入力してください。",
         "mimes"=> "画像はjpeg・png・jpgのみアップロードできます。",
         "seasoning_image.max"=> "画像のサイズが1MBを超えています。"
@@ -36,6 +37,9 @@ class SeasoningRequest extends FormRequest
         switch ($route) {
             case 'create':
                 $validator->errors()->add('dialog_name', 'create_dialog');
+                break;
+            case '/seasoning/update':
+                $validator->errors()->add('update_dialog', 'update_dialog');
                 break;
         }
         $this->merge(['validated' => 'true']);

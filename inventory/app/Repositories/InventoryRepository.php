@@ -109,4 +109,24 @@ class InventoryRepository
             throw $e;
         }
     }
+    /**
+    * 調味料データを更新します
+    *
+    * @param array $param
+    * @return void
+    */
+    public function updateSeasoning(array $seasoning): void
+    {
+        try {
+            $seasoningdata = (array)$seasoning;
+            DB::beginTransaction();
+            DB::table('seasonings')->where('id',$seasoningdata["id"])->where('users_id',$seasoningdata["users_id"])
+            ->update($seasoningdata);
+            DB::commit();
+        }
+        catch (Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
+    }
 }

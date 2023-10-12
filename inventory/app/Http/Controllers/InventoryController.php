@@ -46,4 +46,16 @@ class InventoryController extends Controller
         $message = $inventory_service->deleteSeasoningInventory($request);
         return redirect('/inventory')->with(compact('message'));
     }
+    /**
+    * 調味料データを更新します
+    *
+    * @param Request $request
+    * @return RedirectResponse
+    */
+    public function postSeasoningsUpdate(SeasoningRequest $request) :RedirectResponse
+    {
+        $inventory_service = new InventoryService();
+        $message = $inventory_service->updateSeasoningInventory($request);
+        return redirect('/inventory')->with(compact('message'));
+    }
 }

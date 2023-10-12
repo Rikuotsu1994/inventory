@@ -29,3 +29,6 @@ Route::post('/create', [InventoryController::class, 'postSeasoningsCreate'])
 
 Route::post('/delete', [InventoryController::class, 'postSeasoningsDelete'])
 ->middleware(['auth', 'verified'])->name('delete');
+
+Route::post('/seasoning/update', [InventoryController::class, 'postSeasoningsUpdate'])
+->middleware(['auth', 'verified'])->name('/seasoning/update');
