@@ -12,6 +12,7 @@
       <div class="delete_seasoning_form">
         <div class="delete_seasoning_message">
           <input type="hidden" name="seasoning_id" id="delete_seasoning_id" value="">
+          <input type="hidden" name="seasoning_picture_id" id="delete_seasoning_picture_id" value="">
           <div>この調味料と関連する金額データも削除されます。</div>
           <div>削除したデータは復元できません。</div>
           <div class="delete_seasoning_name" id="delete_seasoning_name"></div>

@@ -1,20 +1,20 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Repositories;
 
-use Exception;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 
 class InventoryRepository
 {
     /**
-    * ログインユーザのIDと利用者IDが一致する調味料データを取得します
+    * ログインユーザの調味料データを取得します
     *
-    * @param int $id
+    * @param Int $id
     * @return Collection
     */
-    public function searchSeasoningsInventory(int $id): Collection
+    public function searchSeasoningsInventory(Int $id): Collection
     {
         $nestedSubQuery = function ($subQuery) use ($id){
             $cond = ['seasonings.users_id' => $id, 'markets.users_id' => $id];
@@ -63,70 +63,34 @@ class InventoryRepository
     /**
     * 調味料データを登録します
     *
-    * @param array $param
-    * @return void
+    * @param Array $array
+    * @return Void
     */
-    public function createSeasoning(array $array): void
+    public function createSeasoning(Array $array): Void
     {
-        try {
-            DB::beginTransaction();
-            DB::table('seasonings')->insert($array);
-            DB::commit();
-        }
-        catch (Exception $e) {
-            DB::rollBack();
-            throw $e;
-        }
-    }
-    /**
-    * 調味料データを1件のみ取得します
-    *
-    * @param array $param
-    * @return object
-    */
-    public function searchOneSeasoning(array $array): mixed
-    {
-        $query = DB::table('seasonings')->where('id',$array["id"])
-        ->where('users_id',$array["users_id"])
-        ->first();
-        return $query;
+        DB::table('seasonings')->insert($array);
     }
     /**
     * 調味料データを削除します
     *
-    * @param array $param
-    * @return void
+    * @param Array $seasoning
+    * @return Int
     */
-    public function deleteSeasoning(object $seasoning): void
+    public function deleteSeasoning(Array $seasoning): Int
     {
-        try {
-            DB::beginTransaction();
-            DB::table('seasonings')->where('id',$seasoning->id)->where('users_id',$seasoning->users_id)->delete();
-            DB::commit();
-        }
-        catch (Exception $e) {
-            DB::rollBack();
-            throw $e;
-        }
+        $deleteseasoning = DB::table('seasonings')->where('id',$seasoning["id"])->where('users_id',$seasoning["users_id"])->delete();
+        return $deleteseasoning;
     }
     /**
     * 調味料データを更新します
     *
-    * @param array $param
-    * @return void
+    * @param Array $seasoning
+    * @return Int
     */
-    public function updateSeasoning(array $seasoning): void
+    public function updateSeasoning(Array $seasoning): Int
     {
-        try {
-            $seasoningdata = (array)$seasoning;
-            DB::beginTransaction();
-            DB::table('seasonings')->where('id',$seasoningdata["id"])->where('users_id',$seasoningdata["users_id"])
-            ->update($seasoningdata);
-            DB::commit();
-        }
-        catch (Exception $e) {
-            DB::rollBack();
-            throw $e;
-        }
+        $updateseasoning = DB::table('seasonings')->where('id',$seasoning["id"])->where('users_id',$seasoning["users_id"])
+        ->update($seasoning);
+        return $updateseasoning;
     }
 }

@@ -42,6 +42,9 @@ document.addEventListener('DOMContentLoaded', ()=>{
         img.setAttribute("class", "update_image");
         document.getElementById("update_img_preview").appendChild(img);
         document.getElementById("image_delete_btn").style.display = "block";
+        const substrsrc = Number(seasoningsrc.indexOf("storage/u")) + 8;
+        const seasoningpic = seasoningsrc.substring(substrsrc);
+        document.getElementById("update_seasoning_picture_id").setAttribute("value", seasoningpic);
       }
       document.querySelector(".update_dialog").style.display = "block";
     });
@@ -92,5 +95,6 @@ document.querySelector(".update_cancel_btn").addEventListener("click", () => {
       updateremarkserror.classList.replace("update_seasoning_remarks_error", "update_seasoning_remarks");
     }
   }
+  document.getElementById("update_seasoning_picture_id").value ="";
   document.querySelector(".update_dialog").style.display = "none";
 });

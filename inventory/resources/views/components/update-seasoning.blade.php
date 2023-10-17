@@ -62,6 +62,7 @@
           <div class="image_delete_btn" id="image_delete_btn">×</div>
           <input type="hidden" name="image_delete_flag" id="image_delete_flag" value="0">
         </div>
+        <input type="hidden" name="seasoning_picture_id" id="update_seasoning_picture_id" value="">
         <div class="form_btn">
           <input type="reset" value="キャンセル" class="update_cancel_btn">
           <input type="submit" value="更新" class="update_submit_btn">

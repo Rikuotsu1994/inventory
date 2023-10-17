@@ -44,6 +44,6 @@ class User extends Authenticatable
 
     public function seasonings()
     {
-        return $this->hasOne(Seasonings::class, 'users_id');
+        return $this->hasAny(Seasonings::class, 'users_id');
     }
 }
