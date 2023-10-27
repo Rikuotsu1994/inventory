@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Services;
 
+use App\Http\Requests\AmountRequest;
 use App\Http\Requests\SeasoningRequest;
 use App\Repositories\InventoryRepository;
 use Exception;
@@ -148,6 +149,30 @@ class InventoryService
             $this->deleteSeasoningImage($request->seasoning_picture_id);
         };
         $message = '調味料を更新しました。';
+        return $message;
+    }
+    /**
+    * 金額データを登録します
+    *
+    * @param AmountRequest $request
+    * @return String
+    * @throws Exception 金額データの作成または更新に失敗した場合にthrow
+    */
+    public function upsertSeasoningAmount (AmountRequest $request): String
+    {
+        $inventory_repository = new InventoryRepository();
+        if ($request->not_available){
+            $upsertamount = $inventory_repository->deleteAmount($request);
+        } else {
+            $upsertamount = $inventory_repository->upsertAmount($request);
+            if (empty($upsertamount)) {
+                $upsertamount = null;
+            };
+        };
+        if(!($upsertamount)) {
+            throw new Exception();
+        };
+        $message = '金額を更新しました。';
         return $message;
     }
     /**

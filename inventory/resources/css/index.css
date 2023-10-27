@@ -31,11 +31,11 @@
 .amount_chart[open] summary::after {
   transform: rotate(225deg);
 }
-.amount_update_btn {
+.amount_upsert_btn {
   margin-right: 10px;
   margin-top: 5px;
 }
-.amount_update_btn:hover svg {
+.amount_upsert_btn:hover svg {
   background-color: #A6A6A6;
   border-radius: 30px;
   fill: #FFFFFF;

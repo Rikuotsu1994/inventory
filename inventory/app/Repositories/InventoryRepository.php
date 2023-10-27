@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Repositories;
 
+use App\Models\Amounts;
+use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
@@ -92,5 +94,31 @@ class InventoryRepository
         $updateseasoning = DB::table('seasonings')->where('id',$seasoning["id"])->where('users_id',$seasoning["users_id"])
         ->update($seasoning);
         return $updateseasoning;
+    }
+    /**
+    * 金額データを更新します
+    *
+    * @param Request $request
+    * @return Amounts
+    */
+    public function upsertAmount(Request $request): Amounts
+    {
+        $upsertamount = Amounts::updateOrCreate(
+            ['seasonings_id' => $request->seasoning_id, 'markets_id' => $request->market_id],
+            ['amount' => $request->seasoning_amount]);
+        return $upsertamount;
+    }
+    /**
+    * 金額データを削除します
+    *
+    * @param Request $request
+    * @return Int
+    */
+    public function deleteAmount(Request $request): Int
+    {
+        $upsertamount = Amounts::where('seasonings_id',$request->seasoning_id)
+        ->where('markets_id' , $request->market_id)
+        ->delete();
+        return $upsertamount;
     }
 }

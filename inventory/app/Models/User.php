@@ -41,9 +41,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
+    protected $table = 'users';
     public function seasonings()
     {
         return $this->hasAny(Seasonings::class, 'users_id');
+    }
+    public function markets()
+    {
+        return $this->hasAny(Markets::class, 'markets_id');
     }
 }

@@ -16,6 +16,8 @@
   @if (isset($update_seasoning_dialog_js)) <script src="{{ $update_seasoning_dialog_js }}" defer></script> @endif
   @if (isset($delete_dialog_css)) <link rel="stylesheet" href="{{ $delete_dialog_css }}"> @endif
   @if (isset($delete_dialog_js)) <script src="{{ $delete_dialog_js }}" defer></script> @endif
+  @if (isset($upsert_amount_dialog_css)) <link rel="stylesheet" href="{{ $upsert_amount_dialog_css }}"> @endif
+  @if (isset($upsert_amount_dialog_js)) <script src="{{ $upsert_amount_dialog_js }}" defer></script> @endif
 </head>
 <body>
   <div>

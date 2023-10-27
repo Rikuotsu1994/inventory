@@ -7,6 +7,8 @@
   <x-slot name="update_seasoning_dialog_js">{{ asset('/js/update_seasoning_dialog.js') }}</x-slot>
   <x-slot name="delete_dialog_css">{{ asset('/css/delete_seasoning_dialog.css') }}</x-slot>
   <x-slot name="delete_dialog_js">{{ asset('/js/delete_dialog.js') }}</x-slot>
+  <x-slot name="upsert_amount_dialog_css">{{ asset('/css/upsert_amount_dialog.css') }}</x-slot>
+  <x-slot name="upsert_amount_dialog_js">{{ asset('/js/upsert_amount_dialog.js') }}</x-slot>
     <div class="inventory_contents">
       @if($query->isEmpty())
         <div class="seasonings_not_exist">データが登録されていません</div>
@@ -78,13 +80,13 @@
         @endif
         @if(isset($seasoning->market_name))
           <div class="market_line">
-            <div class="market_name">{{ $seasoning->market_name }}</div>
+            <div class="market_name" id="market_name_{{ $seasoning->seasoning_id }}_{{ $seasoning->market_id }}">{{ $seasoning->market_name }}</div>
               @if(isset($seasoning->seasoning_amount))
-                <div class="market_amount @if($market_min_amount == ($seasoning->seasoning_amount)) market_min_amount @endif">&yen;{{ $seasoning->seasoning_amount }}</div>
+                <div class="market_amount @if($market_min_amount == ($seasoning->seasoning_amount)) market_min_amount @endif" id="market_amount_{{ $seasoning->seasoning_id }}_{{ $seasoning->market_id }}">&yen;{{ $seasoning->seasoning_amount }}</div>
               @else 
-                <div class="market_amount">取扱い無し</div>
+                <div class="market_amount" id="market_amount_{{ $seasoning->seasoning_id }}_{{ $seasoning->market_id }}">取扱い無し</div>
               @endif
-              <div class="amount_update_btn">
+              <div class="amount_upsert_btn" data-seasoningid="{{ $seasoning->seasoning_id }}" data-marketid="{{ $seasoning->market_id }}">
                 <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32">
                   <path d="M200-200h56l345-345-56-56-345 345v56Zm572-403L602-771l56-56q23-23 56.5-23t56.5 23l56 56q23 23 24 55.5T829-660l-57 57Zm-58 59L290-120H120v-170l424-424 170 170Zm-141-29-28-28 56 56-28-28Z"/>
                 </svg>
@@ -105,6 +107,7 @@
   <x-create-button></x-create-button>
   <x-create></x-create>
   <x-update-seasoning></x-update-seasoning>
+  <x-upsert-amount></x-upsert-amount>
   <x-delete></x-delete>
   <x-snackbar></x-snackbar>
 </x-app>

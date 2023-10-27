@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AmountRequest;
 use App\Http\Requests\SeasoningRequest;
 use App\Services\InventoryService;
 use Exception;
@@ -80,6 +81,25 @@ class InventoryController extends Controller
         } catch (Exception $e) {
             DB::rollBack();
             return redirect('/inventory')->with(['message' => "調味料の更新に失敗しました。" ]);
+        }
+    }
+    /**
+    * 金額データを更新します
+    *
+    * @param AmountRequest $request
+    * @return RedirectResponse
+    */
+    public function postAmountUpsert(AmountRequest $request) :RedirectResponse
+    {
+        try {
+            DB::beginTransaction();
+            $inventory_service = new InventoryService();
+            $message = $inventory_service->upsertSeasoningAmount($request);
+            DB::commit();
+            return redirect('/inventory')->with(compact('message'));
+        } catch (Exception $e) {
+            DB::rollBack();
+            return redirect('/inventory')->with(['message' => "金額の更新に失敗しました。" ]);
         }
     }
 }

@@ -1,0 +1,91 @@
+.amount_check_box {
+  color: #707070;
+  display: flex;
+  margin-bottom: 10px;
+}
+.amount_label {
+  align-items: flex-start;
+  color: #707070;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+.amount_label_error {
+  align-items: flex-start;
+  color: #FF0000;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+.amount_market_name,
+.amount_seasoning_name {
+  border-bottom: 1px solid #000000;
+  color: #707070;
+  display: flex;
+  font-size: 20px;
+  text-align: start;
+  width: 100%;
+}
+.form_btn {
+  display: flex;
+  justify-content: space-evenly;
+}
+input.not_available {
+  width: 20px;
+  height: 20px;
+}
+input.upsert_cancel_btn {
+  background-color: #FFFFFF;
+  border: solid 1px #000000;
+  border-radius: 30px;
+  font-size: 30px;
+  width: 200px;
+}
+input.upsert_cancel_btn:hover {
+  background-color: #A6A6A6;
+  border: solid 1px #FFFFFF;
+  border-radius: 30px;
+  color: #ffffff;
+  cursor : pointer;
+}
+input.upsert_seasoning_image {
+  display: none;
+}
+input.upsert_amount {
+  border-bottom: 1px solid #000000;
+  font-size: 28px;
+  width: 100%;
+}
+input.upsert_amount_error {
+  border-bottom: 1px solid #FF0000;
+  font-size: 28px;
+  width: 100%;
+}
+input.upsert_amount_submit_btn {
+  background-color: #00736D;
+  border: solid 1px #000000;
+  border-radius: 30px;
+  color: #FFFFFF;
+  font-size: 30px;
+  width: 200px;
+}
+input.upsert_amount_submit_btn:hover {
+  cursor : pointer;
+  opacity: .7;
+}
+.upsert_amount_area {
+  margin-bottom: 10px;
+}
+.upsert_amount_dialog {
+  display: none;
+}
+.upsert_amount_dialog_error {
+  display: block;
+}
+.upsert_amount_seasoning_dialog {
+  padding: 10px;
+  width: 90%;
+}
+.upsert_amount_form {
+  font-size: 20px;
+}

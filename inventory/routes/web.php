@@ -32,3 +32,6 @@ Route::post('/delete', [InventoryController::class, 'postSeasoningsDelete'])
 
 Route::post('/seasoning/update', [InventoryController::class, 'postSeasoningsUpdate'])
 ->middleware(['auth', 'verified'])->name('/seasoning/update');
+
+Route::post('amount/upsert', [InventoryController::class, 'postAmountUpsert'])
+->middleware(['auth', 'verified'])->name('amount/upsert');
