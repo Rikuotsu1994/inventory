@@ -46,7 +46,7 @@ class InventoryService
         return redirect()->route('login');
     }
     /**
-    * ログインユーザの調味料データを取得します
+    * 調味料データを取得します
     *
     * @return Collection
     */
@@ -199,5 +199,16 @@ class InventoryService
     protected function deleteSeasoningImage(String $path): Void
     {
         Storage::disk('public')->delete($path);
+    }
+    /**
+    * お店データを取得します
+    *
+    * @return Collection
+    */
+    public function getMaraketList (): Collection
+    {
+        $inventory_repository = new InventoryRepository();
+        $query = $inventory_repository->searchMarket(Auth::id());
+        return $query;
     }
 }

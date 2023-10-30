@@ -102,4 +102,16 @@ class InventoryController extends Controller
             return redirect('/inventory')->with(['message' => "金額の更新に失敗しました。" ]);
         }
     }
+    /**
+    * お店データを取得します
+    *
+    * @param Request $request
+    * @return View
+    */
+    public function getMarket() : View
+    {
+        $inventory_service = new InventoryService();
+        $query = $inventory_service->getMaraketList();
+        return view('/inventory/market', compact('query'));
+    }
 }

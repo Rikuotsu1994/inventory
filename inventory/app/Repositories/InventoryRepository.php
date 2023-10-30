@@ -121,4 +121,16 @@ class InventoryRepository
         ->delete();
         return $upsertamount;
     }
+    /**
+    * ログインユーザのお店データを取得します
+    *
+    * @param Int $id
+    * @return Collection
+    */
+    public function searchMarket(Int $id): Collection
+    {
+        $query = DB::table('markets')->select('markets.id as market_id', 'markets.name as market_name')
+        ->where('users_id',$id)->get();
+        return $query;
+    }
 }

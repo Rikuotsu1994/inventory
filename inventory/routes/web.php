@@ -35,3 +35,6 @@ Route::post('/seasoning/update', [InventoryController::class, 'postSeasoningsUpd
 
 Route::post('amount/upsert', [InventoryController::class, 'postAmountUpsert'])
 ->middleware(['auth', 'verified'])->name('amount/upsert');
+
+Route::get('/market', [InventoryController::class, 'getMarket'])
+->middleware(['auth', 'verified'])->name('market');
