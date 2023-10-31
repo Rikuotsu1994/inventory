@@ -3,8 +3,8 @@
   <x-slot name="css_link">{{ asset('/css/index.css') }}</x-slot>
   <x-slot name="create_dialog_css">{{ asset('/css/create_seasoning_dialog.css') }}</x-slot>
   <x-slot name="create_dialog_js">{{ asset('/js/create_dialog.js') }}</x-slot>
-  <x-slot name="update_seasoning_dialog_css">{{ asset('/css/update_seasoning_dialog.css') }}</x-slot>
-  <x-slot name="update_seasoning_dialog_js">{{ asset('/js/update_seasoning_dialog.js') }}</x-slot>
+  <x-slot name="update_dialog_css">{{ asset('/css/update_seasoning_dialog.css') }}</x-slot>
+  <x-slot name="update_dialog_js">{{ asset('/js/update_seasoning_dialog.js') }}</x-slot>
   <x-slot name="delete_dialog_css">{{ asset('/css/delete_seasoning_dialog.css') }}</x-slot>
   <x-slot name="delete_dialog_js">{{ asset('/js/delete_dialog.js') }}</x-slot>
   <x-slot name="upsert_amount_dialog_css">{{ asset('/css/upsert_amount_dialog.css') }}</x-slot>

@@ -41,3 +41,6 @@ Route::get('/markets', [InventoryController::class, 'getMarket'])
 
 Route::post('/create/markets', [InventoryController::class, 'postMarketCreate'])
 ->middleware(['auth', 'verified'])->name('/create/markets');
+
+Route::post('/update/markets', [InventoryController::class, 'postMarketUpdate'])
+->middleware(['auth', 'verified'])->name('/update/markets');

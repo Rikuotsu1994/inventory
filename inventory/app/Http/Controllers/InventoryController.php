@@ -133,4 +133,23 @@ class InventoryController extends Controller
             return redirect('/markets')->with(['message' => "お店の登録に失敗しました。" ]);
         }
     }
+    /**
+    * 調味料データを更新します
+    *
+    * @param MarketRequest $request
+    * @return RedirectResponse
+    */
+    public function postMarketUpdate(MarketRequest $request) :RedirectResponse
+    {
+        try {
+            DB::beginTransaction();
+            $inventory_service = new InventoryService();
+            $message = $inventory_service->updateMarketName($request);
+            DB::commit();
+            return redirect('/markets')->with(compact('message'));
+        } catch (Exception $e) {
+            DB::rollBack();
+            return redirect('/markets')->with(['message' => "お店の更新に失敗しました。" ]);
+        }
+    }
 }

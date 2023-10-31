@@ -229,4 +229,26 @@ class InventoryService
         $message = 'お店を登録しました。';
         return $message;
     }
+    /**
+    * お店データを更新します
+    *
+    * @param MarketRequest $request
+    * @return String
+    * @throws Exception データ更新に失敗した場合にthrow
+    */
+    public function updateMarketName (MarketRequest $request): String
+    {
+        $param = [
+            'id' => $request->market_id,
+            'users_id' => Auth::id(),
+            'name' => $request->market_name,
+        ];
+        $inventory_repository = new InventoryRepository();
+        $updatemarket = $inventory_repository->updateMarket($param);
+        if(!($updatemarket)) {
+            throw new Exception();
+        };
+        $message = 'お店を更新しました。';
+        return $message;
+    }
 }

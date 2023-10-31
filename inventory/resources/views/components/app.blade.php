@@ -12,8 +12,8 @@
   @if (isset($create_btn_css)) <link rel="stylesheet" href="{{ $create_btn_css }}"> @endif
   @if (isset($create_dialog_css)) <link rel="stylesheet" href="{{ $create_dialog_css }}"> @endif
   @if (isset($create_dialog_js)) <script src="{{ $create_dialog_js }}" defer></script> @endif
-  @if (isset($update_seasoning_dialog_css)) <link rel="stylesheet" href="{{ $update_seasoning_dialog_css }}"> @endif
-  @if (isset($update_seasoning_dialog_js)) <script src="{{ $update_seasoning_dialog_js }}" defer></script> @endif
+  @if (isset($update_dialog_css)) <link rel="stylesheet" href="{{ $update_dialog_css }}"> @endif
+  @if (isset($update_dialog_js)) <script src="{{ $update_dialog_js }}" defer></script> @endif
   @if (isset($delete_dialog_css)) <link rel="stylesheet" href="{{ $delete_dialog_css }}"> @endif
   @if (isset($delete_dialog_js)) <script src="{{ $delete_dialog_js }}" defer></script> @endif
   @if (isset($upsert_amount_dialog_css)) <link rel="stylesheet" href="{{ $upsert_amount_dialog_css }}"> @endif

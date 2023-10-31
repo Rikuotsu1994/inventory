@@ -143,4 +143,16 @@ class InventoryRepository
     {
         DB::table('markets')->insert($array);
     }
+    /**
+    * お店データを更新します
+    *
+    * @param Array $market
+    * @return Int
+    */
+    public function updateMarket(Array $market): Int
+    {
+        $updateseasoning = DB::table('markets')->where('id',$market["id"])->where('users_id',$market["users_id"])
+        ->update($market);
+        return $updateseasoning;
+    }
 }

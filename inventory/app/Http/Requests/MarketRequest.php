@@ -41,7 +41,10 @@ class MarketRequest extends FormRequest
             case '/create/markets':
                 $validator->errors()->add('create_dialog', 'create_dialog');
                 break;
-        }
+                case '/update/markets':
+                    $validator->errors()->add('update_dialog', 'update_dialog');
+                break;
+            }
         $this->merge(['validated' => 'true']);
         throw new HttpResponseException(
             redirect()->route('markets')->withInput()->withErrors($validator)
