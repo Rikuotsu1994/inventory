@@ -1,6 +1,8 @@
 <x-app>
   <x-header></x-header>
-  <x-slot name="css_link">{{ asset('/css/market.css') }}</x-slot>
+  <x-slot name="css_link">{{ asset('/css/markets.css') }}</x-slot>
+  <x-slot name="create_dialog_css">{{ asset('/css/create_markets_dialog.css') }}</x-slot>
+  <x-slot name="create_dialog_js">{{ asset('/js/create_markets_dialog.js') }}</x-slot>
     <div class="market_contents">
       <div class="page_title">お店一覧</div>
       @if($query->isEmpty())
@@ -25,6 +27,6 @@
       @endforeach
     </div>
   <x-create-button></x-create-button>
-  <x-markets.create></x-create>
+  <x-markets.create></x-markets.create>
   <x-snackbar></x-snackbar>
 </x-app>

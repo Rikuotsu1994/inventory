@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AmountRequest;
+use App\Http\Requests\MarketRequest;
 use App\Http\Requests\SeasoningRequest;
 use App\Services\InventoryService;
 use Exception;
@@ -67,7 +68,7 @@ class InventoryController extends Controller
     /**
     * 調味料データを更新します
     *
-    * @param Request $request
+    * @param SeasoningRequest $request
     * @return RedirectResponse
     */
     public function postSeasoningsUpdate(SeasoningRequest $request) :RedirectResponse
@@ -105,13 +106,31 @@ class InventoryController extends Controller
     /**
     * お店データを取得します
     *
-    * @param Request $request
     * @return View
     */
     public function getMarket() : View
     {
         $inventory_service = new InventoryService();
         $query = $inventory_service->getMaraketList();
-        return view('/inventory/market', compact('query'));
+        return view('/inventory/markets', compact('query'));
+    }
+        /**
+    * お店データを登録します
+    *
+    * @param MarketRequest $request
+    * @return RedirectResponse
+    */
+    public function postMarketCreate(MarketRequest $request) :RedirectResponse
+    {
+        try {
+            DB::beginTransaction();
+            $inventory_service = new InventoryService();
+            $message = $inventory_service->createMarketName($request);
+            DB::commit();
+            return redirect('/markets')->with(compact('message'));
+        } catch (Exception $e) {
+            DB::rollBack();
+            return redirect('/markets')->with(['message' => "お店の登録に失敗しました。" ]);
+        }
     }
 }

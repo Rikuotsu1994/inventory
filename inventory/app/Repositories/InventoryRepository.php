@@ -133,4 +133,14 @@ class InventoryRepository
         ->where('users_id',$id)->get();
         return $query;
     }
+    /**
+    * お店データを登録します
+    *
+    * @param Array $array
+    * @return Void
+    */
+    public function createMarket(Array $array): Void
+    {
+        DB::table('markets')->insert($array);
+    }
 }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Services;
 
 use App\Http\Requests\AmountRequest;
+use App\Http\Requests\MarketRequest;
 use App\Http\Requests\SeasoningRequest;
 use App\Repositories\InventoryRepository;
 use Exception;
@@ -210,5 +211,22 @@ class InventoryService
         $inventory_repository = new InventoryRepository();
         $query = $inventory_repository->searchMarket(Auth::id());
         return $query;
+    }
+    /**
+    * お店データを登録します
+    *
+    * @param MarketRequest $request
+    * @return String
+    */
+    public function createMarketName (MarketRequest $request): String
+    {
+        $param = [
+            'users_id' => Auth::id(),
+            'name' => $request->market_name,
+        ];
+        $inventory_repository = new InventoryRepository();
+        $inventory_repository->createMarket($param);
+        $message = 'お店を登録しました。';
+        return $message;
     }
 }
