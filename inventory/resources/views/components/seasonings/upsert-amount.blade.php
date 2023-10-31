@@ -21,11 +21,11 @@
           <label for="upsert_seasoning_amount">
           @if (($errors->has('upsert_dialog')) && ($errors->has('seasoning_amount')))
             <div class="amount_label_error">金額</div></label>
-            <input type="number" name="seasoning_amount" class="upsert_amount_error" id="upsert_seasoning_amount" value="{{ old('seasoning_amount') }}">
+            <input type="number" name="seasoning_amount" class="upsert_amount_error" id="upsert_seasoning_amount" value="{{ old('seasoning_amount') }}" oninput="amountdigitcontrol(this, 6)">
             <div class="error_message">{{ $errors->first('seasoning_amount') }}</div>
           @else
             <div class="amount_label">金額</div></label>
-            <input type="number" name="seasoning_amount" class="upsert_amount" id="upsert_seasoning_amount" value="{{ old('seasoning_amount') }}">
+            <input type="number" name="seasoning_amount" class="upsert_amount" id="upsert_seasoning_amount" value="{{ old('seasoning_amount') }}" oninput="amountdigitcontrol(this, 6)">
           @endif
         </div>
         <div class="amount_check_box">

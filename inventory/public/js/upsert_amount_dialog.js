@@ -74,3 +74,6 @@ window.addEventListener('load', () => {
     document.getElementById("amount_seasoning_name_display").textContent = "" + amountseasoningname;
   };
 });
+function amountdigitcontrol(inputdigit, maxdigit) {  
+  inputdigit.value = inputdigit.value.slice(0, maxdigit);  
+};

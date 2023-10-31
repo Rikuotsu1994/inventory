@@ -105,9 +105,9 @@
       @endforeach
     </div>
   <x-create-button></x-create-button>
-  <x-create></x-create>
-  <x-update-seasoning></x-update-seasoning>
-  <x-upsert-amount></x-upsert-amount>
-  <x-delete></x-delete>
+  <x-seasonings.create></x-seasonings.create>
+  <x-seasonings.update-seasoning></x-seasonings.update-seasoning>
+  <x-seasonings.upsert-amount></x-seasonings.upsert-amount>
+  <x-seasonings.delete></x-seasonings.delete>
   <x-snackbar></x-snackbar>
 </x-app>
