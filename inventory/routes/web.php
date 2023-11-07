@@ -44,3 +44,6 @@ Route::post('/create/markets', [InventoryController::class, 'postMarketCreate'])
 
 Route::post('/update/markets', [InventoryController::class, 'postMarketUpdate'])
 ->middleware(['auth', 'verified'])->name('/update/markets');
+
+Route::post('/delete/markets', [InventoryController::class, 'postMarketDelete'])
+->middleware(['auth', 'verified'])->name('/update/markets');

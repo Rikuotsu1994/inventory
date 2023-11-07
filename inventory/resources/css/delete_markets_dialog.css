@@ -1,69 +1,60 @@
-.create_dialog {
+.delete_dialog {
   display: none;
 }
-.create_dialog_error {
+.delete_dialog_error {
   display: block;
 }
-.create_market_dialog {
+.delete_market_dialog {
   padding: 10px;
   width: 90%;
 }
-.create_market_form {
+.delete_market_form {
   font-size: 20px;
 }
-.create_market_name_label {
-  align-items: flex-start;
-  color: #707070;
+.delete_market_message {
+  text-align: start;
   display: flex;
   flex-direction: column;
-  margin-bottom: 10px;
-}
-.create_market_name_label_error {
-  align-items: flex-start;
-  color: #FF0000;
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 10px;
+  margin-top: 20px;
+  margin-bottom: 30px;
 }
 .form_btn {
   display: flex;
   justify-content: space-evenly;
 }
-input.create_cancel_btn {
+input.delete_cancel_btn {
   background-color: #FFFFFF;
   border: solid 1px #000000;
   border-radius: 30px;
   font-size: 30px;
   width: 200px;
 }
-input.create_cancel_btn:hover {
+input.delete_cancel_btn:hover {
   background-color: #A6A6A6;
   border: solid 1px #FFFFFF;
   border-radius: 30px;
   color: #ffffff;
   cursor : pointer;
 }
-input.create_market_name {
+input.delete_market_name {
   border-bottom: 1px solid #000000;
   font-size: 28px;
-  margin-bottom: 10%;
   width: 100%;
 }
-input.create_market_name_error {
+input.delete_market_name_error {
   border-bottom: 1px solid #FF0000;
   font-size: 28px;
-  margin-bottom: 10%;
   width: 100%;
 }
-input.create_submit_btn {
-  background-color: #00736D;
+input.delete_submit_btn {
+  background-color: #FF0000;
   border: solid 1px #000000;
   border-radius: 30px;
   color: #FFFFFF;
   font-size: 30px;
   width: 200px;
 }
-input.create_submit_btn:hover {
+input.delete_submit_btn:hover {
   cursor : pointer;
   opacity: .7;
 }

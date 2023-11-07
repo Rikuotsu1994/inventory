@@ -134,7 +134,7 @@ class InventoryController extends Controller
         }
     }
     /**
-    * 調味料データを更新します
+    * お店データを更新します
     *
     * @param MarketRequest $request
     * @return RedirectResponse
@@ -150,6 +150,25 @@ class InventoryController extends Controller
         } catch (Exception $e) {
             DB::rollBack();
             return redirect('/markets')->with(['message' => "お店の更新に失敗しました。" ]);
+        }
+    }
+    /**
+    * お店データを削除します
+    *
+    * @param Request $request
+    * @return RedirectResponse
+    */
+    public function postMarketDelete(Request $request) :RedirectResponse
+    {
+        try {
+            DB::beginTransaction();
+            $inventory_service = new InventoryService();
+            $message = $inventory_service->deleteMarketName($request);
+            DB::commit();
+            return redirect('/markets')->with(compact('message'));
+        } catch (Exception $e) {
+            DB::rollBack();
+            return redirect('/markets')->with(['message' => "お店の削除に失敗しました。" ]);
         }
     }
 }

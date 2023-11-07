@@ -155,4 +155,16 @@ class InventoryRepository
         ->update($market);
         return $updateseasoning;
     }
+    /**
+    * お店データを削除します
+    *
+    * @param Array $market
+    * @return Int
+    */
+    public function deleteMarket(Array $market): Int
+    {
+        $deletemarket = DB::table('markets')->where('id',$market["id"])->where('users_id',$market["users_id"])
+        ->delete();
+        return $deletemarket;
+    }
 }

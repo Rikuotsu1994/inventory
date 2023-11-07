@@ -251,4 +251,25 @@ class InventoryService
         $message = 'お店を更新しました。';
         return $message;
     }
+    /**
+    * お店データを削除します
+    *
+    * @param Request $request
+    * @return String
+    * @throws Exception データ削除に失敗した場合にthrow
+    */
+    public function deleteMarketName (Request $request): String
+    {
+        $param = [
+            'id' => $request->market_id,
+            'users_id' => Auth::id(),
+        ];
+        $inventory_repository = new InventoryRepository();
+        $deletemarket = $inventory_repository->deleteMarket($param);
+        if(!($deletemarket)) {
+            throw new Exception();
+        };
+        $message = 'お店を削除しました。';
+        return $message;
+    }
 }
