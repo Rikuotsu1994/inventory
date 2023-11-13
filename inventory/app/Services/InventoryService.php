@@ -272,4 +272,15 @@ class InventoryService
         $message = 'お店を削除しました。';
         return $message;
     }
+    /**
+    * ユーザデータを取得します
+    *
+    * @return Collection
+    */
+    public function getUserInfo (): Collection
+    {
+        $inventory_repository = new InventoryRepository();
+        $query = $inventory_repository->searchUser(Auth::id());
+        return $query;
+    }
 }

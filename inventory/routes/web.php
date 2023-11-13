@@ -47,3 +47,6 @@ Route::post('/update/markets', [InventoryController::class, 'postMarketUpdate'])
 
 Route::post('/delete/markets', [InventoryController::class, 'postMarketDelete'])
 ->middleware(['auth', 'verified'])->name('/update/markets');
+
+Route::get('/user', [InventoryController::class, 'getUser'])
+->middleware(['auth', 'verified'])->name('user');

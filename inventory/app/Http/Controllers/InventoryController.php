@@ -171,4 +171,15 @@ class InventoryController extends Controller
             return redirect('/markets')->with(['message' => "お店の削除に失敗しました。" ]);
         }
     }
+    /**
+    * ユーザデータを取得します
+    *
+    * @return View
+    */
+    public function getUser() : View
+    {
+        $inventory_service = new InventoryService();
+        $query = $inventory_service->getUserInfo();
+        return view('/inventory/user', compact('query'));
+    }
 }

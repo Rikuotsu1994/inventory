@@ -29,7 +29,7 @@
       </summary>
       <div class="user_list">
         <div class="dropdown_lists">
-          <div class="dropdown_list"><a href="" class="user_menu">利用者管理</a></div>
+          <div class="dropdown_list"><a href="{{ route('user') }}" class="user_menu">利用者管理</a></div>
           <div class="dropdown_list"><a href="{{ route('logout') }}" class="user_menu">ログアウト</a></div>
         </div>
       </div>

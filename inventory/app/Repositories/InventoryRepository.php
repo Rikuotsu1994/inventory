@@ -167,4 +167,15 @@ class InventoryRepository
         ->delete();
         return $deletemarket;
     }
+    /**
+    * ログインユーザのデータを取得します
+    *
+    * @param Int $id
+    * @return Collection
+    */
+    public function searchUser(Int $id): Collection
+    {
+        $query = DB::table('users')->where('id',$id)->get();
+        return $query;
+    }
 }
